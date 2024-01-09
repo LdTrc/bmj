@@ -13,7 +13,7 @@
 
             <div class="card shadow mb-4">
                 <div class="card-header py-3">
-                    <h6 class="m-0 font-weight-bold text-primary">Register New Items</h6>
+                    <h6 class="m-0 font-weight-bold text-primary">Add Items</h6>
                 </div>
 
                 <div class="card-body">
@@ -44,7 +44,7 @@
                                 </div>
                             </div>
                             <div class="form-group">
-                        `        <div class="row">
+                                <div class="row">
                                     <label class="col-lg-2">Supplier</label>
                                     <div class="col-lg-10">
                                         <div class="row">

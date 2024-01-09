@@ -35,6 +35,8 @@ Route::post('/register',[RegisterController::class, 'store']);
 Route::get('/', [ProductController::class, 'rekomendasiBarang'])->middleware('auth');
 Route::get('/home', [ProductController::class, 'rekomendasiBarang'])->middleware('auth');
 
+Route::get('/datasupp', [SupplierController::class, 'rekomendasiSupplier'])->middleware('auth');
+
 Route::get('/addsupplier', [SupplierController::class, 'index'])->middleware('auth');
 Route::post('/addsupplier',[SupplierController::class, 'store'])->middleware('auth');
 

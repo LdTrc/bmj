@@ -15,7 +15,11 @@
     <li class="nav-item active">
       <a class="nav-link" href="home">
         <i class="fas fa-fw fa-tachometer-alt"></i>
-        <span>Recommendation</span></a
+        <span>Best Items</span></a
+      >
+      <a class="nav-link" href="datasupp">
+        <i class="fas fa-fw fa-tachometer-alt"></i>
+        <span>Best Supplier</span></a
       >
     </li>
 
@@ -27,13 +31,13 @@
 
     <!-- Nav Item - Pages Collapse Menu -->
     <li class="nav-item">
-      <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="true" aria-controls="collapseTwo">
+      <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
         <i class="fa fa-shopping-bag"></i>
         <span>Items</span>
       </a>
-      <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+      <div id="collapseOne" class="collapse" aria-labelledby="headingOne" data-parent="#accordionSidebar">
         <div class="bg-white py-2 collapse-inner rounded">
-          <h6 class="collapse-header">Custom Items:</h6>
+          {{-- <h6 class="collapse-header">Custom Items:</h6> --}}
           <a class="collapse-item" href="{{ url('regisproduct') }}">Add Items</a>
           <a class="collapse-item" href="{{ url('listproducts') }}">List Items</a>
         </div>
@@ -67,10 +71,22 @@
 
     <!-- Heading -->
     <div class="sidebar-heading">SUPPLIER MANAGEMENTS</div>
-
+    <li class="nav-item">
+      <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="true" aria-controls="collapseTwo">
+        <i class="fas fa-fw fa-table"></i>
+        <span>Supplier</span>
+      </a>
+      <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+        <div class="bg-white py-2 collapse-inner rounded">
+          {{-- <h6 class="collapse-header">Custom Items:</h6> --}}
+          <a class="collapse-item" href="{{ url('addsupplier') }}">Add Supplier</a>
+          <a class="collapse-item" href="{{ url('listsupplier') }}">List Suppliers</a>
+        </div>
+      </div>
+    </li>
    
 
-    <!-- Nav Item - Charts -->
+    {{-- <!-- Nav Item - Charts -->
     <li class="nav-item">
       <a class="nav-link" href="{{ url('addsupplier') }}">
         <i class="fas fa fa-plus-circle"></i>
@@ -84,7 +100,7 @@
         <i class="fas fa-fw fa-table"></i>
         <span>List Supplier</span></a
       >
-    </li>
+    </li> --}}
 
     <!-- Divider -->
     <hr class="sidebar-divider d-none d-md-block" />

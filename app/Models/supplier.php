@@ -10,8 +10,15 @@ class supplier extends Model
     use HasFactory;
     protected $table = 'supplier';
     protected $PrimaryKey = 'id';
-    protected $fillable = ['id','nama','telp','alamat','created_at','updated_at'];
+    protected $fillable = ['id','nama','telp','alamat','kecpengiriman', 'tdiskon', 'pelayanan', 'garansi', 'keaslian', 'tpembayaran','created_at','updated_at'];
 
+    public function scopeFilter($query)
+    {
+        if(request('cari')){
+            return $query->where('nama', 'like', '%' . request('cari') . '%')
+                      ->orwhere('telp', 'like', '%' . request('cari') . '%');
+        }
+    }
 
     public function product()
     {

@@ -1,9 +1,9 @@
 <?php
 
 namespace App\Http\Controllers;
-
 use App\Models\supplier;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class ListsupplierController extends Controller
 {
@@ -12,11 +12,27 @@ class ListsupplierController extends Controller
      */
     
 
-    public function index()
+    public function index(Request $request)
     {
+        // $cari = $request->query('cari');
+
+        // if(!empty($cari)){
+        //     $suppliers = supplier::sortable()
+        //     ->where('nama', 'like', '%'.$cari.'%')
+        //     ->orWhere('alamat', 'like', '%'.$cari.'%')
+        //     ->paginate(10)->onEachSide(2)->fragment('supplier');
+        // }else{
+        //     $suppliers = supplier::sortable()->paginate(10)->onEachSide(2)->fragment('suppliers');
+        // }
+
+
+        // $suppliers = DB::table('supplier')->paginate(10);
+        // return view('listsupplier', ['suppliers' => $suppliers]);
+        
         return view('listsupplier', [
-            "supplier" => supplier::all()
+            'suppliers'=> supplier::latest()->filter()->paginate(10),
         ]);
+
     }
 
     /**

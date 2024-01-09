@@ -28,6 +28,18 @@
                 <div class="card">
                     <div class="card-body"> 
                         <div class="table-responsive">
+
+                            <form method="GET">
+                                <div class="form-group row">
+                                    <label for="" class="col-sm-2 col-form-label">
+                                        Cari Data
+                                    </label>
+                                    <div class="col-sm-10">
+                                        <input type="text" name="cari" id="cari" class="form-control" placeholder="Cari data berdasarkan Nama Supplier" autofocus="true" value="{{ cari }}">
+                                    </div>
+                                </div>
+                            </form>
+
                             <table class="table no-wrap v-middle mb-0">
                                 <thead>
                                     <tr class="border-0">
@@ -38,6 +50,13 @@
                                         <th class="border-0 font-14 font-weight-medium text-muted">Price</th>
                                         <!-- Hanya admin yang boleh edit -->
                                         <th class="border-0 font-14 font-weight-medium text-muted">Quality</th>
+
+                                        <th class="border-0 font-14 font-weight-medium text-muted">Kecepeatan Pengiriman</th>
+                                        <th class="border-0 font-14 font-weight-medium text-muted">Tingkat Diskon</th>
+                                        <th class="border-0 font-14 font-weight-medium text-muted">Pelayanan</th>
+                                        <th class="border-0 font-14 font-weight-medium text-muted">Garansi</th>
+                                        <th class="border-0 font-14 font-weight-medium text-muted">Keaslian Barang</th>
+                                        <th class="border-0 font-14 font-weight-medium text-muted">Tempo Pembayaran</th>
                                     </tr>
                                 </thead>
                                 <tbody>    
@@ -66,6 +85,7 @@
                                 
                             </tbody>
                             </table>
+                            {{ $datasupp->links(); }}
                         </div>
                     </div>
                 </div>

@@ -15,11 +15,10 @@ class ProductController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(Request $request)
     {
         return view('listproducts', [
-            'title' => 'product',
-            "product" => product::all()
+            "products" => product::latest()->filter()->paginate(10),
         ]);
     }
 
@@ -51,13 +50,18 @@ class ProductController extends Controller
         return view('data', compact('product'));
     }
 
-    public function rekomendasiBarang()
+    public function rekomendasiBarang(Request $request)
     {
-        $product = Product::all();
+
+        $cari = $request->input('cari');
+
+        $products = product::when($cari, function ($query) use ($cari) {
+            return $query->where('namabarang', 'like', "%$cari%");
+        })->paginate(10);
 
         $hasilRekomendasi = [];
 
-        foreach ($product as $product) {
+        foreach ($products as $product) {
             if (!isset($hasilRekomendasi[$product->namabarang])) {
             // Cari supplier terbaik untuk setiap barang
             $supplierTerbaik = DB::table('product')
@@ -75,7 +79,7 @@ class ProductController extends Controller
             }
         }
         // ($supplierTerbaik);
-        return view('home', ['hasilRekomendasi' => $hasilRekomendasi]);
+        return view('home', ['hasilRekomendasi' => $hasilRekomendasi, 'products' => $products]);
     }
 
     /**

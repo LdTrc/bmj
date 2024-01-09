@@ -17,6 +17,12 @@ return new class extends Migration
             $table->string('nama')->unique();
             $table->string('telp');
             $table->text('alamat');
+            $table->float('kecpengiriman');
+            $table->float('tdiskon');
+            $table->float('pelayanan');
+            $table->float('garansi');
+            $table->float('keaslian');
+            $table->float('tpembayaran');
             $table->timestamps();
             
         });
