@@ -102,7 +102,10 @@ class ProductController extends Controller
             'namabarang' => 'required|max:255',
             'kualitas' => 'required',
             'satuan' => 'required',
-            'price' => 'required'
+            'price' => 'required',
+            'quantity' => 'required',
+            'warranty' => 'required',
+            'order_date' => 'required',
             
         ]);
         
@@ -140,7 +143,8 @@ class ProductController extends Controller
             'namabarang' => 'required|max:255',
             'kualitas' => 'required',
             'satuan' => 'required',
-            'price' => 'required'
+            'price' => 'required',
+            'quantity' => 'required',
         ]);
 
         $product = Product::findOrFail($id);

@@ -7,14 +7,17 @@
     <div class="d-sm-flex align-items-center justify-content-between mb-4">
         {{-- <h1 class="h3 mb-0 text-gray-800">List Products</h1> --}}
     </div>
-
+    <a class="nav-link" href="addinventory">
+        <i class="fas fa-solid fa-bookmark"></i>
+        <span>Add Product Inventory</span></a
+      >
     <div class="row">
         <div class="col-lg-12">
            <div class="card shadow ">
             <div class="card-header py-3"> 
                 <div class="row">
                     <div class="col-4">
-                        <h6 class="mt-3 font-weight-bold text-primary">List Items</h6>
+                        <h6 class="mt-3 font-weight-bold text-primary">Data List</h6>
                     </div>
                     <div class="col-8">
                         <form action="/listproducts">
@@ -48,44 +51,18 @@
                                 <th class="border-0 font-14 font-weight-medium text-muted">Warranty</th>
                                 
                                 <th class="border-0 font-14 font-weight-medium text-muted">Order Date</th>
-                                <th class="border-0 font-14 font-weight-medium text-muted text-center" colspan="2">Action</th>
+                                
                             </tr>
                             
                         </thead>
                         <tbody>
-                            @foreach ($products as $product )
-                                <tr>
-                                  
-                                    <td class="border-top-0 px-2 py-4">{{  $product->namabarang }}</td>
-                                    <td class="border-top-0 text-muted px-2 py-4 font-14">{{  $product->supplier?->nama }}</td>
-                                    <td class="border-top-0 text-muted px-2 py-4 font-14">{{  $product->kualitas }}</td>
-                                    <td class="border-top-0 text-muted px-2 py-4 font-14">{{  $product->satuan }}</td>
-                                    <td class="border-top-0 text-muted px-2 py-4 font-14">{{  $product->price }}</td>
-                                    <td class="border-top-0 text-muted px-2 py-4 font-14">{{  $product->quantity}}</td>
-                                    <td class="border-top-0 text-muted px-2 py-4 font-14">{{  $product->warranty }}</td>
-                                    <td class="border-top-0 text-muted px-2 py-4 font-14">{{  $product->order_date }}</td>
-                                    <!-- Hanya admin yang boleh melakukan aksi pada data -->
-                                    <td class="border-top-0 text-center text-muted px-2 py-4">
-                                        {{-- <button class="btn btn-warning btn-sm" type="submit">Edit</button> --}}
-                                        <a class="btn btn-warning btn-sm" href="/editproduct/{{ $product->id }}">Edit</a>
-                                    </td>
-                                    <td class="border-top-0 text-center text-muted px-2 py-4">
-                                        <form action="{{ route('product.destroy', $product ->id) }}" method="POST">
-                                            @csrf
-                                            @method('DELETE')
-                                            <button class="btn btn-danger btn-sm" type="submit">Del</button>
-                                        </form>
-                                    </td>
-                                    
-                                </tr>
-                                
-                            @endforeach
+                          
+                               
+                          
                             
                         </tbody>
                     </table>
-                    <div class="d-flex justify-content-center">
-                        {{ $products->links() }}
-                    </div>
+                   
                     
                 </div>
                 

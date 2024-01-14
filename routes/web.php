@@ -7,6 +7,9 @@ use App\Http\Controllers\HomeController;
 use App\Http\Controllers\SupplierController;
 use App\Http\Controllers\listsuppliercontroller;
 use App\Http\Controllers\ProductController;
+use App\Http\Controllers\ReminderController;
+use App\Http\Controllers\DatalistController;
+use App\Http\Controllers\InventoryController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -32,8 +35,11 @@ Route::post('/register',[RegisterController::class, 'store']);
 
 // Route::get('/home',[HomeController::class, 'index'])->middleware('auth');
 
-Route::get('/', [ProductController::class, 'rekomendasiBarang'])->middleware('auth');
-Route::get('/home', [ProductController::class, 'rekomendasiBarang'])->middleware('auth');
+Route::get('/', [InventoryController::class, 'index'])->middleware('auth');
+Route::get('/home', [InventoryController::class, 'index'])->middleware('auth');
+
+Route::get('/reminder', [ReminderController::class, 'index'])->middleware('auth');
+Route::get('/list', [ProductController::class, 'index'])->middleware('auth');
 
 Route::get('/datasupp', [SupplierController::class, 'rekomendasiSupplier'])->middleware('auth');
 
@@ -60,4 +66,10 @@ Route::put('/editproduct/{id}', [ProductController::class,'update'])->name('prod
 Route::get('/editsupplier/{id}', [SupplierController::class, 'edit']);
 
 Route::put('/editsupplier/{id}', [SupplierController::class,'update'])->name('supplier.update');
+
+Route::get('/addinventory', [InventoryController::class, 'addindex'])->middleware('auth');
+Route::post('/addinventory',[InventoryController::class, 'addInventory'])->middleware('auth');
+
+Route::get('/editinventory/{id}', [InventoryController::class, 'editindex'])->middleware('auth');
+Route::post('/editinventory',[InventoryController::class, 'editInventory'])->middleware('auth');
 
