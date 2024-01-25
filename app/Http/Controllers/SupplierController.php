@@ -167,6 +167,35 @@ class SupplierController extends Controller
         return view('datasupp', ['hasilRekomendasi'=>$hasilRekomendasi, 'datasupp' => $datasupp, 'suppliers' => $suppliers]);
     }
 
+    public function cetakbestsupp(Request $request)
+    {
+        $suppliers = supplier::all();
+        $datasupp = [];
+
+        $recommendationAlgoritma = $this->algoritma();
+        $recommendation = [];
+        $suppliers = datasupp::all();
+        // dd($recommendationAlgoritma);
+
+        $suppplierEntropi1 = $suppliers->where(strtolower($recommendationAlgoritma[0]["type"]),$recommendationAlgoritma[0]["value"]);
+        foreach($suppplierEntropi1 as $supp){
+            array_push($recommendation,$supp);
+        }
+
+        $suppplierEntropi2 = $suppliers->where(strtolower($recommendationAlgoritma[0]["type"]),$recommendationAlgoritma[1]["defValue"])->where(strtolower($recommendationAlgoritma[1]["type"]),$recommendationAlgoritma[1]["value"]);
+        foreach($suppplierEntropi2 as $supp1){
+            array_push($recommendation,$supp1);
+        }
+        
+
+        $suppplierEntropi3 = $suppliers->where(strtolower($recommendationAlgoritma[0]["type"]),$recommendationAlgoritma[2]["defValue"])->where(strtolower($recommendationAlgoritma[2]["type"]),$recommendationAlgoritma[2]["value"]);
+        foreach($suppplierEntropi3 as $supp2){
+            array_push($recommendation,$supp2);
+        }
+        
+        return view('cetakbestsupp', ['hasilRekomendasi'=>$recommendation, 'datasupp' => $datasupp, 'suppliers' => $suppliers]);
+    }
+
     public function rekomendasiSupplierAlgoritma(Request $request)
     {
         $suppliers = supplier::all();
@@ -191,6 +220,16 @@ class SupplierController extends Controller
         $suppplierEntropi3 = $suppliers->where(strtolower($recommendationAlgoritma[0]["type"]),$recommendationAlgoritma[2]["defValue"])->where(strtolower($recommendationAlgoritma[2]["type"]),$recommendationAlgoritma[2]["value"]);
         foreach($suppplierEntropi3 as $supp2){
             array_push($recommendation,$supp2);
+        }
+
+        $cari = $request->input('cari');
+        if ($cari) {
+            $filteredRecommendation = collect($recommendation)->filter(function ($supp) use ($cari) {
+                return stripos($supp->namasupp, $cari) !== false;
+            });
+
+            $recommendation = $filteredRecommendation->all();
+        
         }
         
         return view('datasupp', ['hasilRekomendasi'=>$recommendation, 'datasupp' => $datasupp, 'suppliers' => $suppliers]);

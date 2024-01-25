@@ -65,17 +65,17 @@
               <div class="card shadow mb-4">
                   <div class="card-header py-3">
                     <div class="row">
-                      <div class="col-4">
+                      <div class="col-2">
                           <h6 class="mt-3 font-weight-bold text-primary">Best Supplier</h6>
                       </div>
-                      <div class="col-8">
+                      <div class="col-10">
                           <form action="/datasupp" method="get">
                               <div class="input-group">
                                   <input name="cari" id="cari" class="form-control bg-white" style="width: 260px; margin-left: 410px;" type="text" placeholder="Search" aria-label="Search" value="">
                                   <button class="btn btn-primary ml-3" type="submit">Search</button>
+                                  <a class="btn btn-success ml-3" href="/cetakbestsupp">Print</a>
                               </div>
                           </form>
-                         
                       </div>
                   </div>
                       {{-- <h6 class="m-0 font-weight-bold text-primary">Recommendation</h6>

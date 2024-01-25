@@ -19,6 +19,13 @@ class DatasuppController extends Controller
         ]);
     }
 
+    public function cetakbestsupp()
+    {
+        return view('cetakbestsupp', [  
+            "datasupp" => datasupp::get()
+        ]);
+    }
+
     /**
      * Show the form for creating a new resource.
      */

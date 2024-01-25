@@ -97,3 +97,4 @@ Route::get('/editinventory/{id}', [InventoryController::class, 'editindex'])->mi
 Route::post('/editinventory',[InventoryController::class, 'editInventory'])->middleware('auth');
 Route::put('/editinventory/{id}', [InventoryController::class,'updateinventory'])->name('inventory.update');
 
+Route::get('/cetakbestsupp',[SupplierController::class, 'cetakbestsupp'])->name('cetakbestsupp');
