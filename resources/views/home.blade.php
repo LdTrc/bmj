@@ -109,7 +109,7 @@
                               <tbody>
                                 @foreach($hasilRekomendasi as $namaBarang => $supplierTerbaik)
                                 <tr>
-                                    <td>{{ ($products->currentPage() - 1) * $products->perPage() + $loop->iteration }}</td>
+                                    <td>{{ $loop->iteration }}</td>
                                     <td>{{ $namaBarang }}</td> 
                                     @foreach($supplierTerbaik as $supplier)
                                         <td>{{ $supplier->namasupp }}</td>
@@ -122,7 +122,7 @@
                               </tbody>
                           </table>
                           <div class="d-flex justify-content-center">
-                            {{ $products->links() }}
+                            {{-- {{ $products->links() }} --}}
                         </div>
                       </div>
                   </div>

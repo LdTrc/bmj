@@ -61,7 +61,7 @@ class ProductController extends Controller
 
         $products = product::when($cari, function ($query) use ($cari) {
             return $query->where('namabarang', 'like', "%$cari%");
-        })->paginate(10);
+        })->get();
 
         $hasilRekomendasi = [];
 
