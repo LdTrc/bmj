@@ -13,12 +13,13 @@
 
             <div class="card shadow mb-4">
                 <div class="card-header py-3">
-                    <h6 class="m-0 font-weight-bold text-primary">Add New Units</h6>
+                    <h6 class="m-0 font-weight-bold text-primary">Edit Units</h6>
                 </div>
 
                 <div class="card-body">
                     
-                    <form action="/addunits" method="POST">
+                    <form action="{{ route('units.update', $units->id) }}" method="POST">
+                        @method('put')
                         @csrf
                         <div class="form-body">
                             <div class="form-group">
@@ -31,7 +32,7 @@
                                                     <div class="input-group-prepend">
                                                         <label class="input-group-text" for="inputGroupSelect01"><i class="fas fa-box"></i></label>
                                                     </div>
-                                                    <input type="text" name="satuan" value=""  class="form-control" required="1" placeholder="Huruf kecil semua" />
+                                                    <input type="text" name="satuan" value="{{ $units->satuan }}"  class="form-control" required="1" placeholder="Huruf kecil semua" />
                                                 </div>
                                             </div>
                                         </div>

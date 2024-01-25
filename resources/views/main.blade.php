@@ -9,6 +9,8 @@
 
 
     <!-- Custom fonts for this template-->
+    <link href="{{asset('css/notif.css')}}" rel="stylesheet" type="text/css">
+
     <link href="{{ asset('vendor/fontawesome-free/css/all.min.css') }}" rel="stylesheet" type="text/css">
     <link
         href="{{ asset('https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i') }}"
@@ -88,6 +90,7 @@
     <script src="{{ asset('js/demo/chart-pie-demo.js') }}"></script>
     <script src="{{ asset('https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js') }}"></script>
     <script src="{{ asset('https://cdnjs.cloudflare.com/ajax/libs/bootstrap-star-rating/4.0.6/js/star-rating.min.js') }}"></script>
+    <script src="{{ asset('js/notif.js') }}"></script>
 
     {{-- <script src="vendor/jquery/jquery.min.js"></script>
     <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script> --}}

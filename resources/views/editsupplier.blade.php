@@ -100,7 +100,13 @@
                                                     <div class="input-group-prepend">
                                                         <label class="input-group-text" for="inputGroupSelect01"><i class="fas fa-address-card"></i></label>
                                                     </div>
-                                                    <input type="text" name="kecpengiriman"  class="form-control" placeholder="" required="1"  value="{{ $supplier->kecpengiriman }}" />
+                                                    <select class="form-control" name="kecpengiriman" id="">
+                                                        <option value="0" {{ $supplier->kecpengiriman == 0 ? 'selected' : '' }}>0 - Sangat Rendah</option>
+                                                        <option value="0.25" {{ $supplier->kecpengiriman == 0.25 ? 'selected' : '' }}>0.25 - Rendah</option>
+                                                        <option value="0.5" {{ $supplier->kecpengiriman == 0.5 ? 'selected' : '' }}>0.5 - Tengah</option>
+                                                        <option value="0.75" {{ $supplier->kecpengiriman == 0.75 ? 'selected' : '' }}>0.75 - Tinggi</option>
+                                                        <option value="1" {{ $supplier->kecpengiriman == 1 ? 'selected' : '' }}>1 - Sangat Tinggi</option>
+                                                    </select>
                                                 </div>
                                             </div>
                                         </div>
@@ -121,7 +127,13 @@
                                                 <div class="input-group-prepend">
                                                     <label class="input-group-text" for="inputGroupSelect01"><i class="fas fa-address-card"></i></label>
                                                 </div>
-                                                <input type="text" name="tdiskon"  class="form-control" placeholder="" required="1"  value="{{ $supplier->tdiskon }}" />
+                                                <select class="form-control" name="tdiskon" id="">
+                                                    <option value="0" {{ $supplier->tdiskoon == 0 ? 'selected' : '' }}>0 - Sangat Rendah</option>
+                                                    <option value="0.25" {{ $supplier->tdiskoon == 0.25 ? 'selected' : '' }}>0.25 - Rendah</option>
+                                                    <option value="0.5" {{ $supplier->tdiskoon == 0.5 ? 'selected' : '' }}>0.5 - Tengah</option>
+                                                    <option value="0.75" {{ $supplier->tdiskoon == 0.75 ? 'selected' : '' }}>0.75 - Tinggi</option>
+                                                    <option value="1" {{ $supplier->tdiskoon == 1 ? 'selected' : '' }}>1 - Sangat Tinggi</option>
+                                                </select>    
                                             </div>
                                         </div>
                                     </div>
@@ -142,7 +154,13 @@
                                             <div class="input-group-prepend">
                                                 <label class="input-group-text" for="inputGroupSelect01"><i class="fas fa-address-card"></i></label>
                                             </div>
-                                            <input type="text" name="pelayanan"  class="form-control" placeholder="" required="1"  value="{{ $supplier->pelayanan }}" />
+                                            <select class="form-control" name="pelayanan" id="">
+                                                <option value="0" {{ $supplier->pelayanan == 0 ? 'selected' : '' }}>0 - Sangat Rendah</option>
+                                                <option value="0.25" {{ $supplier->pelayanan == 0.25 ? 'selected' : '' }}>0.25 - Rendah</option>
+                                                <option value="0.5" {{ $supplier->pelayanan == 0.5 ? 'selected' : '' }}>0.5 - Tengah</option>
+                                                <option value="0.75" {{ $supplier->pelayanan == 0.75 ? 'selected' : '' }}>0.75 - Tinggi</option>
+                                                <option value="1" {{ $supplier->pelayanan == 1 ? 'selected' : '' }}>1 - Sangat Tinggi</option>
+                                            </select>    
                                         </div>
                                     </div>
                                 </div>
@@ -163,7 +181,13 @@
                                         <div class="input-group-prepend">
                                             <label class="input-group-text" for="inputGroupSelect01"><i class="fas fa-address-card"></i></label>
                                         </div>
-                                        <input type="text" name="garansi"  class="form-control" placeholder="" required="1"  value="{{ $supplier->garansi }}" />
+                                        <select class="form-control" name="garansi" id="">
+                                            <option value="0" {{ $supplier->garansi == 0 ? 'selected' : '' }}>0 - Sangat Rendah</option>
+                                            <option value="0.25" {{ $supplier->garansi == 0.25 ? 'selected' : '' }}>0.25 - Rendah</option>
+                                            <option value="0.5" {{ $supplier->garansi == 0.5 ? 'selected' : '' }}>0.5 - Tengah</option>
+                                            <option value="0.75" {{ $supplier->garansi == 0.75 ? 'selected' : '' }}>0.75 - Tinggi</option>
+                                            <option value="1" {{ $supplier->garansi == 1 ? 'selected' : '' }}>1 - Sangat Tinggi</option>
+                                        </select>    
                                     </div>
                                 </div>
                             </div>
@@ -174,7 +198,7 @@
                         </div>
                     </div>
                 </div>
-            <div class="form-group">
+            {{-- <div class="form-group">
                 <div class="row">
                     <label class="col-lg-2">Keaslian Barang</label>
                     <div class="col-lg-10">
@@ -184,7 +208,13 @@
                                     <div class="input-group-prepend">
                                         <label class="input-group-text" for="inputGroupSelect01"><i class="fas fa-address-card"></i></label>
                                     </div>
-                                    <input type="text" name="keaslian"  class="form-control" placeholder="" required="1"  value="{{ $supplier->keaslian }}" />
+                                    <select class="form-control" name="keaslian" id="">
+                                        <option value="0" {{ $supplier->keaslian == 0 ? 'selected' : '' }}>0 - Sangat Rendah</option>
+                                        <option value="0.25" {{ $supplier->keaslian == 0.25 ? 'selected' : '' }}>0.25 - Rendah</option>
+                                        <option value="0.5" {{ $supplier->keaslian == 0.5 ? 'selected' : '' }}>0.5 - Tengah</option>
+                                        <option value="0.75" {{ $supplier->keaslian == 0.75 ? 'selected' : '' }}>0.75 - Tinggi</option>
+                                        <option value="1" {{ $supplier->keaslian == 1 ? 'selected' : '' }}>1 - Sangat Tinggi</option>
+                                    </select>    
                                 </div>
                             </div>
                         </div>
@@ -194,7 +224,7 @@
                         </div>
                     </div>
                 </div>
-            </div>
+            </div> --}}
         <div class="form-group">
             <div class="row">
                 <label class="col-lg-2">Tempo Pembayaran</label>
@@ -205,7 +235,13 @@
                                 <div class="input-group-prepend">
                                     <label class="input-group-text" for="inputGroupSelect01"><i class="fas fa-address-card"></i></label>
                                 </div>
-                                <input type="text" name="tpembayaran"  class="form-control" placeholder="" required="1"  value="{{ $supplier->tpembayaran }}" />
+                                <select class="form-control" name="tpembayaran" id="">
+                                    <option value="0" {{ $supplier->tpembayaran == 0 ? 'selected' : '' }}>0 - Sangat Rendah</option>
+                                    <option value="0.25" {{ $supplier->tpembayaran == 0.25 ? 'selected' : '' }}>0.25 - Rendah</option>
+                                    <option value="0.5" {{ $supplier->tpembayaran == 0.5 ? 'selected' : '' }}>0.5 - Tengah</option>
+                                    <option value="0.75" {{ $supplier->tpembayaran == 0.75 ? 'selected' : '' }}>0.75 - Tinggi</option>
+                                    <option value="1" {{ $supplier->tpembayaran == 1 ? 'selected' : '' }}>1 - Sangat Tinggi</option>
+                                </select>    
                             </div>
                         </div>
                     </div>

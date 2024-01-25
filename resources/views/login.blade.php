@@ -143,12 +143,12 @@ button{
       @csrf  
       <h3>Login Here</h3>
 
-        <label for="username">Username</label>
+        <label for="username">Email</label>
         <input name="email" type="email" placeholder="Email" id="username">
 
         <label for="password">Password</label>
         <input name="password" type="password" placeholder="Password" id="password">
-        <button type="submit" >Log In</button>
+        <button type="submit" >Login</button>
         <a href="/register">Register</a>
     </form>
 </body>

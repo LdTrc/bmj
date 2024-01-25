@@ -5,18 +5,18 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class supplier extends Model
+class datasupp extends Model
 {
     use HasFactory;
-    protected $table = 'supplier';
+    protected $table = 'datasupp';
     protected $PrimaryKey = 'id';
-    protected $fillable = ['id','nama','telp','alamat','kecpengiriman', 'tdiskon', 'pelayanan', 'garansi', 'tpembayaran','created_at','updated_at'];
+    protected $fillable = ['id','namasupp','notelp','alamat','kota', 'lokasi', 'pengiriman', 'diskon', 'garansi','created_at','updated_at'];
 
     public function scopeFilter($query)
     {
         if(request('cari')){
-            return $query->where('nama', 'like', '%' . request('cari') . '%')
-                      ->orwhere('telp', 'like', '%' . request('cari') . '%');
+            return $query->where('namasupp', 'like', '%' . request('cari') . '%')
+                      ->orwhere('notelp', 'like', '%' . request('cari') . '%');
         }
     }
 

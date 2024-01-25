@@ -18,11 +18,11 @@
             <!-- Area Chart -->
             <div class="card shadow mb-4">
                 <div class="card-header py-3">
-                    <h6 class="m-0 font-weight-bold text-primary">Add Supplier</h6>
+                    <h6 class="m-0 font-weight-bold text-primary">Add New Supplier</h6>
                 </div>
                 <div class="card-body">
                    
-                    <form action="/addsupplier" method="POST">
+                    <form action="/addsupp" method="POST">
                         @csrf
                         <div class="form-body">
                             <div class="form-group">
@@ -35,7 +35,7 @@
                                                     <div class="input-group-prepend">
                                                         <label class="input-group-text" for="inputGroupSelect01"><i class="fas fa-user"></i></label>
                                                     </div>
-                                                    <input type="text" name="nama" value="{{ old('nama') }}"  class="form-control" required="1" placeholder="" />
+                                                    <input type="text" name="namasupp" value="{{ old('namasupp') }}"  class="form-control" required="1" placeholder="" />
                                                 </div>
                                             </div>
                                         </div>
@@ -49,7 +49,7 @@
                             
                             <div class="form-group">
                                 <div class="row">
-                                    <label class="col-lg-2">Phone Number</label>
+                                    <label class="col-lg-2">Contact</label>
                                     <div class="col-lg-10">
                                         <div class="row">
                                             <div class="col-md-12">
@@ -57,7 +57,7 @@
                                                     <div class="input-group-prepend">
                                                         <label class="input-group-text" for="inputGroupSelect01"><i class="fas fa-phone"></i></label>
                                                     </div>
-                                                    <input type="text" name="telp" value="{{ old('telp') }}"  class="form-control" placeholder="" required="1" />
+                                                    <input type="text" name="notelp" value="{{ old('notelp') }}"  class="form-control" placeholder="" required="1" />
                                                 </div>
                                                 @error('telp')
                                                     <div class="text-danger">{{ $message }}</div>
@@ -84,10 +84,26 @@
                                     </div>
                                 </div>
                             </div>
-
                             <div class="form-group">
                                 <div class="row">
-                                    <label class="col-lg-2">Kecepatan Pengiriman</label>
+                                    <label class="col-lg-2">City</label>
+                                    <div class="col-lg-10">
+                                        <div class="row">
+                                            <div class="col-md-12">
+                                                <div class="input-group">
+                                                    <div class="input-group-prepend">
+                                                        <label class="input-group-text" for="inputGroupSelect01"><i class="fas fa-address-card"></i></label>
+                                                    </div>
+                                                    <input type="text" name="kota" value="{{ old('kota') }}"  class="form-control" placeholder="" required="1" />
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="row">
+                                    <label class="col-lg-2">Location</label>
                                     <div class="col-lg-10">
                                         <div class="row">
                                             <div class="col-md-12">
@@ -96,15 +112,40 @@
                                                         <label class="input-group-text" for="inputGroupSelect01"><i class="fa fa-clock-o"></i></label>
                                                     </div>
                                                     {{-- <input type="text" name="kecpengiriman" value="{{ old('kecpengiriman') }}"  class="form-control" placeholder="" required="1" /> --}}
-                                                    <select class="form-control" name="kecpengiriman" id="">
-                                                        <option value="0">0 - Sangat Rendah</option>
-                                                        <option value="0.25">0.25 - Rendah</option>
-                                                        <option value="0.5">0.5 - Tengah</option>
-                                                        <option value="0.75">0.75 - Tinggi</option>
-                                                        <option value="1">1 - Sangat Tinggi</option>
+                                                    <select class="form-control" name="lokasi" id="">
+                                                        <option value="1">Dalam Kota</option>
+                                                        <option value="0.5">Luar Kota</option>
+                                                        <option value="0">Luar Pulau</option>
                                                     </select>
                                                 </div>
-                                                @error('kecpengiriman')
+                                                @error('lokasi')
+                                                    <div class="text-danger">{{ $message }}</div>
+                                                @enderror
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div> 
+
+
+                            <div class="form-group">
+                                <div class="row">
+                                    <label class="col-lg-2">Delivery</label>
+                                    <div class="col-lg-10">
+                                        <div class="row">
+                                            <div class="col-md-12">
+                                                <div class="input-group">
+                                                    <div class="input-group-prepend">
+                                                        <label class="input-group-text" for="inputGroupSelect01"><i class="fa fa-clock-o"></i></label>
+                                                    </div>
+                                                    {{-- <input type="text" name="kecpengiriman" value="{{ old('kecpengiriman') }}"  class="form-control" placeholder="" required="1" /> --}}
+                                                    <select class="form-control" name="pengiriman" id="">
+                                                        <option value="0">Lama</option>
+                                                        <option value="0.5">Sedang</option>
+                                                        <option value="1">Cepat</option>
+                                                    </select>
+                                                </div>
+                                                @error('pengiriman')
                                                     <div class="text-danger">{{ $message }}</div>
                                                 @enderror
                                             </div>
@@ -115,7 +156,7 @@
 
                             <div class="form-group">
                                 <div class="row">
-                                    <label class="col-lg-2">Tingkat Diskon</label>
+                                    <label class="col-lg-2">Discount</label>
                                     <div class="col-lg-10">
                                         <div class="row">
                                             <div class="col-md-12">
@@ -124,15 +165,12 @@
                                                         <label class="input-group-text" for="inputGroupSelect01"><i class="fa fa-minus-square"></i></label>
                                                     </div>
                                                     {{-- <input type="text" name="tdiskon" value="{{ old('tdiskon') }}"  class="form-control" placeholder="" required="1" /> --}}
-                                                    <select class="form-control" name="tdiskon" id="">
-                                                        <option value="0">0 - Sangat Rendah</option>
-                                                        <option value="0.25">0.25 - Rendah</option>
-                                                        <option value="0.5">0.5 - Tengah</option>
-                                                        <option value="0.75">0.75 - Tinggi</option>
-                                                        <option value="1">1 - Sangat Tinggi</option>
+                                                    <select class="form-control" name="diskon" id="">
+                                                        <option value="1">Tinggi</option>
+                                                        <option value="0.5">Rendah</option>
                                                     </select>
                                                 </div>
-                                                @error('tdiskon')
+                                                @error('diskon')
                                                     <div class="text-danger">{{ $message }}</div>
                                                 @enderror
                                             </div>
@@ -143,36 +181,7 @@
 
                             <div class="form-group">
                                 <div class="row">
-                                    <label class="col-lg-2">Pelayanan</label>
-                                    <div class="col-lg-10">
-                                        <div class="row">
-                                            <div class="col-md-12">
-                                                <div class="input-group">
-                                                    <div class="input-group-prepend">
-                                                        <label class="input-group-text" for="inputGroupSelect01"><i class="fa fa-users"></i></label>
-                                                    </div>
-                                                    {{-- <input type="text" name="pelayanan" value="{{ old('pelayanan') }}"  class="form-control" placeholder="" required="1" />
-                                                     --}}
-                                                     <select class="form-control" name="pelayanan" id="">
-                                                        <option value="0">0 - Sangat Rendah</option>
-                                                        <option value="0.25">0.25 - Rendah</option>
-                                                        <option value="0.5">0.5 - Tengah</option>
-                                                        <option value="0.75">0.75 - Tinggi</option>
-                                                        <option value="1">1 - Sangat Tinggi</option>
-                                                    </select>
-                                                </div>
-                                                @error('pelayanan')
-                                                    <div class="text-danger">{{ $message }}</div>
-                                                @enderror
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div class="form-group">
-                                <div class="row">
-                                    <label class="col-lg-2">Garansi</label>
+                                    <label class="col-lg-2">Warranty</label>
                                     <div class="col-lg-10">
                                         <div class="row">
                                             <div class="col-md-12">
@@ -182,11 +191,8 @@
                                                     </div>
                                                     {{-- <input type="text" name="garansi" value="{{ old('garansi') }}"  class="form-control" placeholder="" required="1" /> --}}
                                                     <select class="form-control" name="garansi" id="">
-                                                        <option value="0">0 - Sangat Rendah</option>
-                                                        <option value="0.25">0.25 - Rendah</option>
-                                                        <option value="0.5">0.5 - Tengah</option>
-                                                        <option value="0.75">0.75 - Tinggi</option>
-                                                        <option value="1">1 - Sangat Tinggi</option>
+                                                        <option value="1">Ada</option>
+                                                        <option value="0.5">Tidak</option>
                                                     </select>
                                                 </div>
                                                 @error('garansi')
@@ -227,10 +233,10 @@
                                 </div>
                             </div> --}}
 
-
+{{-- 
                             <div class="form-group">
                                 <div class="row">
-                                    <label class="col-lg-2">Tempo Pembayaran</label>
+                                    <label class="col-lg-2">Class</label>
                                     <div class="col-lg-10">
                                         <div class="row">
                                             <div class="col-md-12">
@@ -238,22 +244,19 @@
                                                     <div class="input-group-prepend">
                                                         <label class="input-group-text" for="inputGroupSelect01"><i class="fa fa-money"></i></label>
                                                     </div>
-                                                    <select class="form-control" name="tpembayaran" id="">
-                                                        <option value="0">0 - Sangat Rendah</option>
-                                                        <option value="0.25">0.25 - Rendah</option>
-                                                        <option value="0.5">0.5 - Tengah</option>
-                                                        <option value="0.75">0.75 - Tinggi</option>
-                                                        <option value="1">1 - Sangat Tinggi</option>
+                                                    <select class="form-control" name="class" id="">
+                                                        <option value="1">Pilih</option>
+                                                        <option value="0.5">Tidak Pilih</option>
                                                     </select>
                                                 </div>
-                                                @error('tpembayaran')
+                                                @error('class')
                                                     <div class="text-danger">{{ $message }}</div>
                                                 @enderror
                                             </div>
                                         </div>
                                     </div>
                                 </div>
-                            </div>
+                            </div> --}}
                         </div>
                         <div class="form-actions">
                             <div class="text-right">

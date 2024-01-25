@@ -32,7 +32,7 @@ class ReminderController extends Controller
     {
         $validatedData = $request->validate([
             'supplierid'=> 'required',
-            'namabarang' => 'required|max:255',
+            'namabarang' => 'required|max:30',
             'quantity' => 'required',
             'warranty' => 'required',
             'order_date' => 'required',

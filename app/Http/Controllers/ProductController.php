@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Models\product;
 use App\Models\supplier;
+use App\Models\datasupp;
+use App\Models\units;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
@@ -25,8 +27,10 @@ class ProductController extends Controller
     public function regisindex()
     {
         return view('regisproduct', [
+            'datasupp' => datasupp::all(),
             'title' => 'product',
-            'supplier'=> supplier::all()
+            'supplier'=> supplier::all(),
+            'units'=> units::all()
         ]);
     }
 
@@ -65,8 +69,8 @@ class ProductController extends Controller
             if (!isset($hasilRekomendasi[$product->namabarang])) {
             // Cari supplier terbaik untuk setiap barang
             $supplierTerbaik = DB::table('product')
-                ->select('product.*', 'supplier.nama')
-                ->join('supplier', 'product.supplierid', '=', 'supplier.id')
+                ->select('product.*', 'datasupp.namasupp')
+                ->join('datasupp', 'product.supplierid', '=', 'datasupp.id')
                 ->where('product.namabarang', $product->namabarang)
                 ->orderBy('product.price')
                 ->orderByDesc('product.kualitas')
@@ -88,7 +92,9 @@ class ProductController extends Controller
     public function create()
     {
         return view('regisproduct', [
-            'supplier'=> supplier::all()
+            'datasupp' => datasupp::all(),
+            'supplier'=> supplier::all(),
+            'units'=> units::all()
         ]);
     }
 
@@ -99,13 +105,15 @@ class ProductController extends Controller
     {
         $validatedData = $request->validate([
             'supplierid'=> 'required',
-            'namabarang' => 'required|max:255',
+            'satuanid' => 'required',
+            'namabarang' => 'required|max:30',
+            'discount' => 'required',
             'kualitas' => 'required',
-            'satuan' => 'required',
             'price' => 'required',
-            'quantity' => 'required',
-            'warranty' => 'required',
-            'order_date' => 'required',
+            // 'inventory_id' => 'required',
+            // 'quantity' => 'required',
+            // 'warranty' => 'required',
+            // 'order_date' => 'required',
             
         ]);
         
@@ -128,9 +136,10 @@ class ProductController extends Controller
     public function edit($id)
     {
         $supplier = supplier::all();
-
+        $datasupp = datasupp::all();
+        $units = units::all();
         $product = product::with('supplier')->find($id);
-        return view('editproduct', compact('supplier', 'product'));
+        return view('editproduct', compact('supplier', 'product','units','datasupp'));
     }
 
     /**
@@ -139,12 +148,16 @@ class ProductController extends Controller
     public function update(Request $request, $id)
     {
         $validatedData = $request->validate([
-            'supplierid' => 'required',
-            'namabarang' => 'required|max:255',
+            'supplierid'=> 'required',
+            'namabarang' => 'required|max:30',
             'kualitas' => 'required',
-            'satuan' => 'required',
+            'discount' => 'required',
+            'satuanid' => 'required',
             'price' => 'required',
-            'quantity' => 'required',
+            // 'inventory_id' => 'required',
+            // 'quantity' => 'required',
+            // 'warranty' => 'required',
+            // 'order_date' => 'required',
         ]);
 
         $product = Product::findOrFail($id);

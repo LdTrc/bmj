@@ -5,6 +5,8 @@
       <i class="fa fa-bars"></i>
     </button>
 
+
+    
   
 
     <!-- Topbar Navbar -->
@@ -90,13 +92,67 @@
           <a class="dropdown-item text-center small text-gray-500" href="#">Read More Messages</a>
         </div> --}}
       </li>
+      
+      <header>
+       
+            <div class="container">
+               
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                    <ul class="navbar-nav ml-auto">
+                        <li class="nav-item dropdown notification-ui">
+                            <a class="nav-link dropdown-toggle notification-ui_icon" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                <i class="fa fa-bell"></i>
+                                @if(count($notifications) != 0)
+                                <span class="unread-notification"></span>
+                                @endif
+                            </a>
+                            <div class="dropdown-menu notification-ui_dd" aria-labelledby="navbarDropdown" style="width: 400px;margin-left:-200px;">
+                                <div class="notification-ui_dd-header">
+                                    <h3 class="text-center">Notification</h3>
+                                </div>
+                                  <table class="table-responsive text-center table table-striped">
+                                    <thead>
+                                      <tr class="border-0">
+                                        <th class="border-0 font-14 font-weight-medium text-muted p-2">Product Name</th>
+                                        <th class="border-0 font-14 font-weight-medium text-muted p-2">Quantity</th>
+                                        <th class="border-0 font-14 font-weight-medium text-muted p-2">Order Date</th>
+                                        <th class="border-0 font-14 font-weight-medium text-muted p-2">Warranty End Date</th>
+                                        <th class="border-0 font-14 font-weight-medium text-muted p-2">Days Left</th>                                
+                                      </tr>
+                                    </thead>
+                                  <tbody>
+                                    @foreach ($notifications as $notif )
+                                    <tr>
+                                      <td class="border-top-0">{{  $notif["productName"] }}</td>
+                                      <td class="border-top-0 text-muted font-14">{{  $notif["quantity"] }}</td>
+                                      <td class="border-top-0 text-muted font-14">{{  $notif["order_date"] }}</td>
+                                      <td class="border-top-0 text-muted font-14">{{  $notif["endDate"] }}</td>
+                                      <td class="border-top-0 text-muted font-14">{{  $notif["days_left"] }}</td>
+                                    </tr>
+                                    @endforeach
+                                </tbody>
+                              </table>
+                            </div>
+                        </li>
+                        
+                    </ul>
+                </div>
+            </div>
+        
+    </header>
 
+     
       <div class="topbar-divider d-none d-sm-block"></div>
 
       <!-- Nav Item - User Information -->
       <li class="nav-item dropdown no-arrow">
+
         <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
           <span class="mr-2 d-none d-lg-inline text-gray-600 small">{{ auth()->user()->name }}</span>
+  
           <img class="img-profile rounded-circle" src="{{ asset('img/undraw_profile.svg')}}" />
         </a>
         <!-- Dropdown - User Information -->

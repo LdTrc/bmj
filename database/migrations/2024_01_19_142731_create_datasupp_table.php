@@ -11,20 +11,17 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('supplier', function (Blueprint $table) {
+        Schema::create('datasupp', function (Blueprint $table) {
             $table->id();
-          
-            $table->string('nama')->unique();
-            $table->string('telp');
+            $table->string('namasupp', 30);
+            $table->string('notelp', 30);
             $table->text('alamat');
-            $table->float('kecpengiriman');
-            $table->float('tdiskon');
-            $table->float('pelayanan');
+            $table->string('kota', 20);
+            $table->string('lokasi', 20);
+            $table->float('pengiriman');
+            $table->float('diskon');
             $table->float('garansi');
-            // $table->float('keaslian');
-            $table->float('tpembayaran');
             $table->timestamps();
-            
         });
     }
 
@@ -33,6 +30,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('supplier');
+        Schema::dropIfExists('datasupp');
     }
 };

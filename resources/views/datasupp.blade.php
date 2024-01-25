@@ -66,7 +66,7 @@
                   <div class="card-header py-3">
                     <div class="row">
                       <div class="col-4">
-                          <h6 class="mt-3 font-weight-bold text-primary">Recommendation Supplier</h6>
+                          <h6 class="mt-3 font-weight-bold text-primary">Best Supplier</h6>
                       </div>
                       <div class="col-8">
                           <form action="/datasupp" method="get">
@@ -103,42 +103,74 @@
                    --}}
                   <div class="card-body">
                       <div class="table-responsive">
-                          <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                          <table class="table table-bordered text-center" id="dataTable" width="100%" cellspacing="0">
                               <thead>
                                   <tr>
-                                    <th>Nama</th>
-                                    <th>Telp</th>
-                                    <th>Alamat</th>
-                                    <th>Kecepatan Pengiriman</th>
-                                    <th>Tingkat Diskon</th>
-                                    <th>Pelayanan</th>
-                                    <th>Garansi</th>
-                                    <th>Keaslian Barang</th>
-                                    <th>Tempo Pembayaran</th>
-                                    <th>Total Nilai</th>
+                                    <th>No</th>
+                                    <th >Name</th>
+                                    <th>Contact</th>
+                                    <th>Address</th>
+                                    <th>City</th>
+                                    <th>Location</th>
+                                    <th>Delivery</th>
+                                    <th>Discount</th>
+                                    <th>Warranty</th>
+                                    {{-- <th>Class</th> --}}
                                   </tr>
                               </thead>
                               <tbody>
                                 @foreach ($hasilRekomendasi as $nama => $skorTotal)
-                                  @if (isset($datasupp[$nama]))
                                     <tr>
-                                      <th>{{ $nama }}</th>
-                                      <th>{{ $datasupp[$nama]['telp'] ?? '' }}</th>
-                                      <th>{{ $datasupp[$nama]['alamat'] ?? '' }}</th>
-                                      <th>{{ $datasupp[$nama]['kecpengiriman'] ?? '' }}</th>
-                                      <th>{{ $datasupp[$nama]['tdiskon'] ?? '' }}</th>
-                                      <th>{{ $datasupp[$nama]['pelayanan'] ?? '' }}</th>
-                                      <th>{{ $datasupp[$nama]['garansi'] ?? '' }}</th>
-                                      <th>{{ $datasupp[$nama]['keaslian'] ?? '' }}</th>
-                                      <th>{{ $datasupp[$nama]['tpembayaran'] ?? '' }}</th>
-                                      <th>{{ $skorTotal }}</th>
+                                      <th class="text-left">{{ $nama + 1 }}</th>
+                                      <th>
+                                        {{ $skorTotal->namasupp ?? '' }}
+                                       
+                                    </th>  
+                                      <th>{{ $skorTotal->notelp ?? '' }}</th>
+                                      <th>{{ $skorTotal->alamat ?? '' }}</th>
+                                      <th>{{ $skorTotal->kota ?? '' }}</th>
+                                      <th>
+                                        {{-- {{ $skorTotal->lokasi ?? '' }} --}}
+                                        @if($skorTotal->lokasi == 1)
+                                        Dalam Kota
+                                    @elseif($skorTotal->lokasi == 0.5)
+                                        Luar Kota
+                                    @elseif($skorTotal->lokasi == 0)
+                                        Luar Pulau
+                                    @endif
+                                      </th>
+                                      <th>
+                                        {{-- {{ $skorTotal->pengiriman ?? '' }} --}}
+                                        @if($skorTotal->pengiriman == 1)
+                                        Cepat
+                                    @elseif($skorTotal->pengiriman == 0.5)
+                                        Sedang
+                                    @elseif($skorTotal->pengiriman == 0)
+                                        Lama
+                                    @endif  </th>
+                                      <th>
+                                        {{-- {{ $skorTotal->diskon ?? '' }} --}}
+                                        @if($skorTotal->diskon == 1)
+                                        Tinggi
+                                    @elseif($skorTotal->diskon == 0.5)
+                                        Rendah
+                                    @endif 
+                                  </th>
+                                      <th>
+                                        {{-- {{ $skorTotal->garansi ?? '' }} --}}
+                                        @if($skorTotal->garansi == 1)
+                                                    Ada
+                                                @elseif($skorTotal->garansi == 0.5)
+                                                    Tidak
+                                                @endif
+                                      </th>
+                                      {{-- <th>{{ $skorTotal->Class ?? '' }}</th> --}}
                                     </tr>
-                                  @endif
                                 @endforeach
                               </tbody>
                           </table>
                           <div class="d-flex justify-content-center">
-                            {{ $suppliers->links() }}
+                            {{-- {{ $suppliers->links() }} --}}
                         </div>
                       </div>
                   </div>

@@ -10,7 +10,7 @@ class product extends Model
     use HasFactory;
     protected $table = 'product';
     protected $PrimaryKey = 'id';
-    protected $fillable = ['id', 'supplierid', 'namabarang', 'kualitas', 'satuan', 'price', 'created_at','updated_at'];
+    protected $fillable = ['id', 'supplierid', 'namabarang', 'kualitas', 'discount',  'satuanid', 'price', 'created_at','updated_at','inventory_id'];
 
     public function scopeFilter($query)
     {
@@ -23,5 +23,15 @@ class product extends Model
     public function supplier()
     {
         return $this->belongsTo(supplier::class, 'supplierid','id');
+    }
+    
+    public function datasupp()
+    {
+        return $this->belongsTo(datasupp::class, 'supplierid','id');
+    }
+    
+    public function units()
+    {
+        return $this->belongsTo(units::class, 'satuanid','id');
     }
 }

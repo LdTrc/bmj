@@ -13,7 +13,7 @@
 
             <div class="card shadow mb-4">
                 <div class="card-header py-3">
-                    <h6 class="m-0 font-weight-bold text-primary">Add Items</h6>
+                    <h6 class="m-0 font-weight-bold text-primary">Edit Items</h6>
                 </div>
 
                 <div class="card-body">
@@ -57,11 +57,11 @@
                                                         {{-- @foreach ($supplier as $supplier)
                                                         <option value="{{ $supplier->id }}">{{ $supplier->nama }}</option>
                                                         @endforeach --}}
-                                                        @foreach ($supplier as $supplier)
-                                                        @if (old('supplierid', $product->supplierid)==$supplier->id)
-                                                        <option value="{{ $supplier->id }}" selected>{{ $supplier->nama }}</option>
+                                                        @foreach ($datasupp as $datasupp)
+                                                        @if (old('supplierid', $product->supplierid)==$datasupp->id)
+                                                        <option value="{{ $datasupp->id }}" selected>{{ $datasupp->namasupp }}</option>
                                                         @else
-                                                        <option value="{{ $supplier->id }}">{{ $supplier->nama }}</option>
+                                                        <option value="{{ $datasupp->id }}">{{ $datasupp->namasupp }}</option>
                                                         @endif
                                                         @endforeach
                                                     </select>
@@ -90,6 +90,27 @@
                             </div>
                             <div class="form-group">
                                 <div class="row">
+                                    <label class="col-lg-2">Discount (%)</label>
+                                    <div class="col-lg-10">
+                                        <div class="row">
+                                            <div class="col-md-12">
+                                                <div class="input-group">
+                                                    <div class="input-group-prepend">
+                                                        <label class="input-group-text" for="inputGroupSelect01"><i class="fas fa-hand-holding-usd"></i></label>
+                                                    </div>
+                                                    <input type="number" name="discount" value="{{ $product->discount }}" class="form-control" placeholder="Discount" required>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="row mt-1">
+                                            <div class="col-md-12">
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="row">
                                     <label class="col-lg-2">Unit</label>
                                     <div class="col-lg-10">
                                         <div class="row">
@@ -98,8 +119,14 @@
                                                     <div class="input-group-prepend">
                                                         <label class="input-group-text" for="supplier-options"><i class="fas fa-box"></i></label>
                                                     </div>
-                                                    <select class="form-control" name="satuan" id="supplier-options">
-                                                        <option value="kardus">kardus</option>                                                    
+                                                    <select class="form-control" name="satuanid" id="supplier-options">
+                                                        @foreach ($units as $units)
+                                                        @if (old('satuanid', $product->satuanid)==$units->id)
+                                                        <option value="{{ $units->id }}" selected>{{ $units->satuan }}</option>
+                                                        @else
+                                                        <option value="{{ $units->id }}">{{ $units->satuan }}</option>
+                                                        @endif
+                                                        @endforeach                                                   
                                                     </select>
                                                 </div>
                                             </div>
@@ -128,7 +155,7 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="form-group">
+                            {{-- <div class="form-group">
                                 <div class="row">
                                     <label class="col-lg-2">Quantity</label>
                                     <div class="col-lg-10">
@@ -190,7 +217,7 @@
                                         </div>
                                     </div>
                                 </div>
-                            </div>
+                            </div> --}}
                             
                         </div>
                         <div class="form-actions">

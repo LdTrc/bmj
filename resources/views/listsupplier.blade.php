@@ -37,18 +37,16 @@
                             </div>
                         @endif
                         <div class="table-responsive">
-                            <table class="table no-wrap v-middle mb-0">
+                            <table class="table no-wrap v-middle mb-0 text-center">
                                 <thead>
                                     <tr class="border-0">
-                                        <th class="border-0 font-14 font-weight-medium text-muted px-2">Name</th>
-                                      
+                                        <th class="border-0 font-14 font-weight-medium text-muted px-2 text-left">Name</th>
                                         <th class="border-0 font-14 font-weight-medium text-muted px-2">Contact</th>
                                         <th class="border-0 font-14 font-weight-medium text-muted">Address</th>
                                         <th class="border-0 font-14 font-weight-medium text-muted">Kecepatan Pengiriman</th>
                                         <th class="border-0 font-14 font-weight-medium text-muted">Tingkat Diskon</th>
                                         <th class="border-0 font-14 font-weight-medium text-muted">Pelayanan</th>
                                         <th class="border-0 font-14 font-weight-medium text-muted">Garansi</th>
-                                        <th class="border-0 font-14 font-weight-medium text-muted">Keaslian Barang</th>
                                         <th class="border-0 font-14 font-weight-medium text-muted">Tempo Pembayaran</th>
                                         <th class="border-0 font-14 font-weight-medium text-muted text-center" colspan="2">Action</th>
                                         <!-- Hanya admin yang boleh edit -->
@@ -57,14 +55,14 @@
                                 <tbody>
                                     @foreach ($suppliers as $supplier)
                                         <tr>
-                                            <td class="border-top-0 px-2 py-4">{{  $supplier->nama }}</td>
+                                            <td class="border-top-0 px-2 py-4 text-left">{{  $supplier->nama }}</td>
                                             <td class="border-top-0 text-muted px-2 py-4 font-14">{{  $supplier->telp }}</td>
                                             <td class="border-top-0 text-muted px-2 py-4 font-14">{{  $supplier->alamat }}</td>
                                             <td class="border-top-0 text-muted px-2 py-4 font-14">{{ $supplier->kecpengiriman }}</td>
                                             <td class="border-top-0 text-muted px-2 py-4 font-14">{{ $supplier->tdiskon }}</td>
                                             <td class="border-top-0 text-muted px-2 py-4 font-14">{{ $supplier->pelayanan }}</td>
                                             <td class="border-top-0 text-muted px-2 py-4 font-14">{{ $supplier->garansi }}</td>
-                                            <td class="border-top-0 text-muted px-2 py-4 font-14">{{ $supplier->keaslian }}</td>
+                                           
                                             <td class="border-top-0 text-muted px-2 py-4 font-14">{{ $supplier->tpembayaran }}</td>
                                             
                                             <!-- Hanya admin yang boleh melakukan aksi pada data -->

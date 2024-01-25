@@ -11,9 +11,10 @@ class inventory extends Model
     protected $table = 'inventory';
     protected $PrimaryKey = 'id';
     protected $fillable = ['id', 'quantity', 'sell_price', 'product_id', 'created_at','updated_at'];
-
+    
     public function product()
     {
         return $this->belongsTo(product::class, 'product_id','id');
     }
+
 }

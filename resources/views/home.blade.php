@@ -68,7 +68,7 @@
                       
                       <div class="row">
                         <div class="col-4">
-                            <h6 class="mt-3 font-weight-bold text-primary">Recommendation Items</h6>
+                            <h6 class="mt-3 font-weight-bold text-primary">Best Items</h6>
                         </div>
                         <div class="col-8">
                             <form action="/home">
@@ -98,23 +98,27 @@
                           <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                               <thead>
                                   <tr>
+                                    <th>No</th>
                                     <th>Items</th>
                                     <th>Supplier</th>
                                     <th>Price</th>
+                                    <th>Discount (%)</th>
                                     <th>Quality</th>
                                   </tr>
                               </thead>
                               <tbody>
-                                  @foreach($hasilRekomendasi as $namaBarang => $supplierTerbaik)
-                                  <tr>
-                                    <td>{{ $namaBarang }}</td>
+                                @foreach($hasilRekomendasi as $namaBarang => $supplierTerbaik)
+                                <tr>
+                                    <td>{{ ($products->currentPage() - 1) * $products->perPage() + $loop->iteration }}</td>
+                                    <td>{{ $namaBarang }}</td> 
                                     @foreach($supplierTerbaik as $supplier)
-                                    <td> {{ $supplier->nama }}</td>
-                                    <td> {{ $supplier->price }}</td>
-                                    <td> {{ $supplier->kualitas }}</td>
+                                        <td>{{ $supplier->namasupp }}</td>
+                                        <td>{{ $supplier->price }}</td> 
+                                        <td>{{ $supplier->discount }}%</td> 
+                                        <td>{{ $supplier->kualitas }}</td> 
                                     @endforeach
-                                  </tr>
-                                  @endforeach
+                                </tr>
+                                @endforeach
                               </tbody>
                           </table>
                           <div class="d-flex justify-content-center">

@@ -18,7 +18,7 @@
             <div class="card shadow mb-4">
 
                 <div class="card-header py-3">
-                    <h6 class="m-0 font-weight-bold text-primary">Register New Items</h6>
+                    <h6 class="m-0 font-weight-bold text-primary">Add New Items</h6>
                 </div>
 
                 <div class="card-body">
@@ -38,6 +38,9 @@
                                                     </div>
                                                     <input type="text" name="namabarang" value=""  class="form-control" required="1" placeholder="" />
                                                 </div>
+                                                @error('namabarang')
+                                                    <div class="text-danger">{{ $message }}</div>
+                                                @enderror
                                             </div>
                                         </div>
                                         <div class="row mt-1">
@@ -58,11 +61,14 @@
                                                         <label class="input-group-text" for="supplier-options"><i class="fas fa-parachute-box"></i></label>
                                                     </div>
                                                     <select class="form-control" name="supplierid" id="supplier-options">
-                                                        @foreach ($supplier as $supplier)
-                                                        <option value="{{ $supplier->id }}">{{ $supplier->nama }}</option>
+                                                        @foreach ($datasupp as $datasupp)
+                                                        <option value="{{ $datasupp->id }}">{{ $datasupp->namasupp }}</option>
                                                         @endforeach
                                                     </select>
                                                 </div>
+                                                @error('supplierid')
+                                                    <div class="text-danger">{{ $message }}</div>
+                                                @enderror
                                             </div>
                                         </div>
                                     </div>
@@ -90,6 +96,33 @@
                                                         <p id="starRating" class="star-rating" name="kualitas" hidden></p>
                                                     </div>
                                             </div>
+                                            @error('kualitas')
+                                                <div class="text-danger">{{ $message }}</div>
+                                            @enderror
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="row">
+                                    <label class="col-lg-2">Discount (%)</label>
+                                    <div class="col-lg-10">
+                                        <div class="row">
+                                            <div class="col-md-12">
+                                                <div class="input-group">
+                                                    <div class="input-group-prepend">
+                                                        <label class="input-group-text" for="inputGroupSelect01"><i class="fas fa-hand-holding-usd"></i></label>
+                                                    </div>
+                                                    <input type="number" name="discount" value="" class="form-control" placeholder="Discount" required>
+                                                </div>
+                                                @error('discount')
+                                                    <div class="text-danger">{{ $message }}</div>
+                                                @enderror
+                                            </div>
+                                        </div>
+                                        <div class="row mt-1">
+                                            <div class="col-md-12">
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
@@ -102,12 +135,17 @@
                                             <div class="col-md-12">
                                                 <div class="input-group">
                                                     <div class="input-group-prepend">
-                                                        <label class="input-group-text" for="supplier-options"><i class="fas fa-box"></i></label>
+                                                        <label class="input-group-text" for="satuan-options"><i class="fas fa-box"></i></label>
                                                     </div>
-                                                    <select class="form-control" name="satuan" id="supplier-options">
-                                                        <option value="kardus">kardus</option>                                                    
+                                                    <select class="form-control" name="satuanid" id="satuan-options">
+                                                        @foreach ($units as $units)
+                                                        <option value="{{ $units->id }}">{{ $units->satuan }}</option>
+                                                        @endforeach
                                                     </select>
                                                 </div>
+                                                @error('satuanid')
+                                                    <div class="text-danger">{{ $message }}</div>
+                                                @enderror
                                             </div>
                                         </div>
                                     </div>
@@ -125,6 +163,9 @@
                                                     </div>
                                                     <input type="number" name="price" value="" class="form-control" placeholder="" required>
                                                 </div>
+                                                @error('price')
+                                                    <div class="text-danger">{{ $message }}</div>
+                                                @enderror
                                             </div>
                                         </div>
                                         <div class="row mt-1">
@@ -134,7 +175,7 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="form-group">
+                            {{-- <div class="form-group">
                                 <div class="row">
                                     <label class="col-lg-2">Quantity</label>
                                     <div class="col-lg-10">
@@ -197,7 +238,7 @@
                                     </div>
                                 </div>
                             </div>
-                        </div>
+                        </div> --}}
                         <div class="form-actions">
                             <div class="text-right">
                                 <button type="submit" class="btn btn-primary">Submit</button>
@@ -207,7 +248,7 @@
                     </form>
                 </div>
             </div>
-
+        </div>
         </div>
     </div>
 </div>

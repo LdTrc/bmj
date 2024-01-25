@@ -38,7 +38,7 @@
                                                     </div>
                                                     <select class="form-control" name="product_id" id="product-options">
                                                         @foreach ($products as $product)
-                                                        <option value="{{ $product->id }}">{{ $product->namabarang }} - {{ $product->supplier->nama }}</option>
+                                                        <option value="{{ $product->id }}">{{ $product->namabarang }} - {{ $product->datasupp->namasupp }}</option>
                                                         @endforeach
                                                     </select>
                                                 </div>
@@ -83,7 +83,7 @@
                             </div>
                             <div class="form-group">
                                 <div class="row">
-                                    <label class="col-lg-2">Warranty</label>
+                                    <label class="col-lg-2">Warranty (Bulan)</label>
                                     <div class="col-lg-10">
                                         <div class="row">
                                             <div class="col-md-12">

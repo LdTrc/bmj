@@ -5,7 +5,9 @@ namespace App\Http\Controllers;
 use App\Models\inventory;
 use App\Models\warranty;
 use App\Models\product;
+use App\Models\units;
 use App\Models\supplier;
+use App\Models\datasupp;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
@@ -19,7 +21,16 @@ class InventoryController extends Controller
      */
     public function index(Request $request)
     {
-        $inventories = inventory::all();
+        $cari = $request->input('cari');
+        $inventories = inventory::when($cari, function ($query) use ($cari) {
+            $query->whereHas('product', function ($productQuery) use ($cari) {
+                $productQuery->where('namabarang', 'like', '%' . $cari . '%');
+                })
+                ->orWhereHas('product.datasupp', function ($supplierQuery) use ($cari) {
+                    $supplierQuery->where('namasupp', 'like', '%' . $cari . '%');
+                });
+        })->paginate(10);
+
         $notifications = [];
         $currentDate = date("Y-m-d");
         $oneWeek = date("Y-m-d", strtotime( date( "Y-m-d", strtotime( date("Y-m-d") ) ) . "+ 1 week" ) );
@@ -46,13 +57,21 @@ class InventoryController extends Controller
                 }
             }
         }
+
         
+        // $hasilRekomendasi = session('hasilRekomendasi');
         return view('listInventory', [
-            "inventories" => inventory::all(),
+            // 'hasilRekomendasi' => $hasilRekomendasi,
+            'datasupp'=> datasupp::all(),
+            'units'=> units::all(),
+            'product'=> product::all(),
+            "inventories" => $inventories,
             "notifications" => $notifications,
             "notificationCount" => count($notifications)
         ]);
     }
+
+    
 
     public function addindex()
     {
@@ -64,6 +83,17 @@ class InventoryController extends Controller
 
     public function addInventory(Request $request)
     {
+
+        $cari = $request->input('cari');
+        $inventories = inventory::when($cari, function ($query) use ($cari) {
+            $query->whereHas('product', function ($productQuery) use ($cari) {
+                $productQuery->where('namabarang', 'like', '%' . $cari . '%');
+                })
+                ->orWhereHas('product.datasupp', function ($supplierQuery) use ($cari) {
+                    $supplierQuery->where('namasupp', 'like', '%' . $cari . '%');
+                });
+        })->paginate(10);
+
         $validatedData = $request->validate([
             'quantity'=> 'required',
             'product_id' => 'required|max:255',
@@ -98,7 +128,7 @@ class InventoryController extends Controller
             'inventory_id' => $inventory->id,
         ]);
 
-        $inventories = inventory::all();
+        // $inventories = inventory::all();
         $notifications = [];
         $currentDate = date("Y-m-d");
         $oneWeek = date("Y-m-d", strtotime( date( "Y-m-d", strtotime( date("Y-m-d") ) ) . "+ 1 week" ) );
@@ -127,9 +157,12 @@ class InventoryController extends Controller
         }
 
         return view('listInventory', [
+            'datasupp'=> datasupp::all(),
+            'units'=> units::all(),
+            'product'=> product::all(),
             "inventories" => $inventories,
-            "notifications" => $notifications,
-            "notificationCount" => count($notifications)
+            // "notifications" => $notifications,
+            // "notificationCount" => count($notifications)
         ]);
     }
 
@@ -147,10 +180,51 @@ class InventoryController extends Controller
             }
         }
         return view('editinventory', [
+            'supplier' => supplier::all(),
+            'products' => product::all(),
             "inventory" => $inventory,
             "warranties" => $warranties,
         ]);
     }
+
+    public function updateInventory(Request $request, $id)
+    {
+        $validatedData = $request->validate([
+            'quantity'=> 'required',
+            'sell_price' => 'required',
+            'warranty' => 'required',
+            'order_date' => 'required',            
+        ]);
+
+        $inventory = inventory::findOrFail($id);
+        $getProduct = $inventory->product;
+
+        if (!$getProduct) {
+            return response()->json(["error" => "Product not found"], 404);
+        }
+
+        $inventory->quantity = $request->input('quantity');
+        $inventory->sell_price = $request->input('sell_price');
+        $inventory->save();
+
+        $warranty = warranty::where('inventory_id', $inventory->id)->first();
+        if ($warranty) {
+            $warranty->order_date = $request->input('order_date');
+            $warranty->warranty = $request->input('warranty');
+            $warranty->quantity = $request->input('quantity');
+            $warranty->buy_price = $getProduct->price;
+            $warranty->save();
+        }
+
+        // Logic untuk memperbarui notifikasi sesuai kebutuhan
+        $inventories = inventory::all();
+        $notifications = [];
+
+        // ... (Sama seperti yang Anda lakukan pada metode addInventory)
+
+        return redirect('/')->with('success', 'Inventory updated successfully');
+    }
+
 
     public function indexdata()
     {
